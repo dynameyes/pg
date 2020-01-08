@@ -40,6 +40,8 @@
 #define INT2OID 21
 #define INT4OID 23
 #define INT8OID 20
+#define FLOAT4OID 700
+#define FLOAT8OID 701
 #define NUMERICOID 1700
 #define BOOLOID 16
 #define TEXTOID 25
@@ -109,7 +111,8 @@ parse_pg_value(struct lua_State *L, PGresult *res, int row, int col)
 	switch (PQftype(res, col)) {
 		case INT2OID:
 		case INT4OID:
-		case NUMERICOID: {
+		case FLOAT4OID:
+		case FLOAT8OID: {
 			lua_pushlstring(L, val, len);
 			double v = lua_tonumber(L, -1);
 			lua_pop(L, 1);
@@ -126,6 +129,9 @@ parse_pg_value(struct lua_State *L, PGresult *res, int row, int col)
 				lua_pushboolean(L, 1);
 			else
 				lua_pushboolean(L, 0);
+			break;
+		case NUMERICOID:
+			lua_pushlstring(L, val, len);
 			break;
 		default:
 			lua_pushlstring(L, val, len);
