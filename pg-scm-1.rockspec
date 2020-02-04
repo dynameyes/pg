@@ -1,12 +1,12 @@
 package = 'pg'
 version = 'scm-1'
 source  = {
-    url    = 'git://github.com/tarantool/pg.git',
+    url    = 'git://github.com/dynameyes/pg.git',
     branch = 'master',
 }
 description = {
     summary  = "PostgreSQL connector for Tarantool",
-    homepage = 'https://github.com/tarantool/pg',
+    homepage = 'https://github.com/dynameyes/pg',
     license  = 'BSD',
 }
 dependencies = {
